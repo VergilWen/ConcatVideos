@@ -15,7 +15,7 @@ def GenFileList():
                 ftxtfile.write(fileStr)
 
 def ConcatVideos():
-    cmd = str.format("{0}/ffmpeg.exe -y -f concat -safe 0 -i {0}/filelist.txt -c copy {1}/{2}.mp4", curDir, parentDir, GenOutputName())
+    cmd = str.format("{0}/ffmpeg.exe -y -f concat -safe 0 -i {0}/filelist.txt -vcodec h264 -c copy {1}/{2}.mp4", curDir, parentDir, GenOutputName())
     cmd = str.replace(cmd, "/", "\\")
     print(cmd)
     os.system(cmd)
@@ -30,6 +30,8 @@ def GenOutputName():
             if match:
                 name = match.group(0)
                 break;
+    if name.startswith("y2mate.com - "):
+        name = name.replace("y2mate.com - ", "")
     return name
 
 GenFileList()
