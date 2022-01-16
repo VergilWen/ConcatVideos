@@ -30,8 +30,8 @@ def GenOutputName():
             if match:
                 name = match.group(0)
                 break;
-    if name.startswith("y2mate.com - "):
-        name = name.replace("y2mate.com - ", "")
+    name = name.replace("y2mate.com - ", "")
+    name = name.replace(" ", "")
     return name
 
 GenFileList()
